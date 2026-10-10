@@ -132,9 +132,23 @@
     
         /* CONTACT: mulai di halaman baru */
         #contact {
+          min-height: 10.8in !important;
+          height: auto !important;
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center !important;
+          align-items: center !important;
+          padding: 15mm 12mm !important;
+          box-sizing: border-box !important;
+        
           break-before: page !important;
           page-break-before: always !important;
-          padding: 10mm 12mm !important;
+        }
+
+        #contact > div {
+          width: 100% !important;
+          max-width: 1200px !important;
+          margin: 0 auto !important;
         }
     
         /* Judul Contact di tengah */
@@ -183,13 +197,7 @@
     
         /* Footer mengikuti konten */
         footer {
-          width: 100% !important;
-          height: auto !important;
-          min-height: 0 !important;
-          margin: 0 !important;
-          padding: 5mm 12mm !important;
-          break-before: auto !important;
-          page-break-before: auto !important;
+          margin-top: 0 !important;
         }
     
         a {
