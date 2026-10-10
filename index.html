@@ -132,6 +132,63 @@
         footer {
           padding: 5mm 0 !important;
         }
+          
+        /* PRINT LAYOUT FIX */
+        
+        /* About Me dan Education tetap satu bagian */
+        #about {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        
+        /* Technical Skills mulai di halaman baru */
+        #skills {
+          break-before: page !important;
+          page-break-before: always !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        
+        /* Semua kartu skills tetap bersama */
+        #skills .grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+          gap: 12px !important;
+        }
+        
+        /* Projects dimulai pada halaman baru */
+        #projects {
+          break-before: page !important;
+          page-break-before: always !important;
+        }
+        
+        /* Judul Projects tidak terpisah dari konten */
+        #projects > div:first-child {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+        
+        /* Hindari kartu project terpotong */
+        #projects .grid > div {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        
+        /* Kurangi jarak kosong */
+        #skills,
+        #projects {
+          padding-top: 20px !important;
+          padding-bottom: 20px !important;
+        }
+        
+        /* Pertahankan warna background */
+        html,
+        body,
+        #root {
+          background: #020617 !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
       }
     </style>
     
@@ -370,7 +427,7 @@
                           Salsa Tashfiyatul Qolbi
                         </span> <br />
                         <span className="text-xl sm:text-2xl lg:text-3xl text-slate-400 font-medium mt-2 block">
-                          Data Analyst & Data Science Specialist
+                          Data Analyst & Data Science 
                         </span>
                       </h1>
                       <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
