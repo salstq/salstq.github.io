@@ -189,6 +189,89 @@
           print-color-adjust: exact !important;
         }
 
+        /* FIX: CENTER CONTENT ON PRINT PAGES */
+        
+        @media print {
+          /* Hilangkan tinggi minimum layar */
+          .min-h-screen {
+            min-height: 0 !important;
+            height: auto !important;
+          }
+        
+          /* Jangan paksa setiap section memenuhi tinggi layar */
+          section {
+            min-height: 0 !important;
+            height: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+        
+          /* Gunakan lebar konten yang konsisten */
+          #about,
+          #skills,
+          #projects,
+          #contact {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+        
+          /* About: dua kolom tetap sejajar */
+          #about > div {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            align-items: start !important;
+            gap: 8mm !important;
+          }
+        
+          /* Skills: judul dan kartu berada di tengah */
+          #skills > div {
+            text-align: center !important;
+          }
+        
+          #skills .grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            gap: 4mm !important;
+            text-align: left !important;
+          }
+        
+          /* Projects: grid kartu terpusat */
+          #projects .grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 6mm !important;
+            align-items: start !important;
+          }
+        
+          /* Contact: hapus kolom form kosong */
+          #contact > div > .grid {
+            display: block !important;
+          }
+        
+          #contact > div > .grid > div:last-child {
+            display: none !important;
+          }
+        
+          /* Jangan membuat halaman kosong karena page break */
+          #home,
+          #about,
+          #skills,
+          #projects,
+          #contact {
+            break-before: auto !important;
+            break-after: auto !important;
+            page-break-before: auto !important;
+            page-break-after: auto !important;
+          }
+        
+          /* Footer tidak perlu memenuhi halaman */
+          footer {
+            height: auto !important;
+            min-height: 0 !important;
+            margin-top: 0 !important;
+          }
+        }
+
       }
     </style>
     
@@ -427,7 +510,7 @@
                           Salsa Tashfiyatul Qolbi
                         </span> <br />
                         <span className="text-xl sm:text-2xl lg:text-3xl text-slate-400 font-medium mt-2 block">
-                          Data Analyst & Data Science 
+                          Data Analyst & Data Scientist 
                         </span>
                       </h1>
                       <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
