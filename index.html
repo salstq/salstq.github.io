@@ -8,15 +8,24 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    
+
     <style>
-      /* Ukuran kertas mengikuti setting print Chrome */
       @page {
         size: 17in 11in;
         margin: 0;
       }
     
       @media print {
+        *,
+        *::before,
+        *::after {
+          box-shadow: none !important;
+          animation: none !important;
+          transition: none !important;
+          print-color-adjust: exact !important;
+          -webkit-print-color-adjust: exact !important;
+        }
+    
         html,
         body,
         #root {
@@ -25,47 +34,47 @@
           padding: 0 !important;
           background: #020617 !important;
           color: #f1f5f9 !important;
-          print-color-adjust: exact !important;
-          -webkit-print-color-adjust: exact !important;
-        }
-    
-        * {
-          box-shadow: none !important;
-          animation: none !important;
-          transition: none !important;
-        }
-    
-        /* Sembunyikan navigasi dan elemen interaktif */
-        header,
-        button,
-        input,
-        textarea,
-        form,
-        #projects > div:nth-child(2),
-        .fixed {
-          display: none !important;
         }
     
         body {
           font-size: 10pt !important;
         }
     
-        /* Gunakan lebar halaman Tabloid Landscape */
+        header,
+        button,
+        input,
+        textarea,
+        form,
+        .fixed,
+        #projects > div:nth-child(2) {
+          display: none !important;
+        }
+    
+        /* Pertahankan ukuran konten dan posisi di tengah */
         section {
           width: 100% !important;
           max-width: none !important;
+          height: auto !important;
+          min-height: 0 !important;
           box-sizing: border-box !important;
+          margin: 0 auto !important;
           padding: 8mm 10mm !important;
-          margin: 0 !important;
           overflow: visible !important;
         }
     
         section > div {
           width: 100% !important;
-          max-width: none !important;
-          box-sizing: border-box !important;
+          max-width: 1400px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
           padding-left: 0 !important;
           padding-right: 0 !important;
+          box-sizing: border-box !important;
+        }
+    
+        .min-h-screen {
+          min-height: 0 !important;
+          height: auto !important;
         }
     
         h1 {
@@ -80,200 +89,93 @@
           font-size: 13pt !important;
         }
     
-        p {
-          overflow-wrap: anywhere;
-        }
-    
         img {
           max-width: 100% !important;
         }
     
-        /* Hindari kartu terpotong */
-        #about a,
-        #skills .grid > div,
-        #projects .grid > div {
-          break-inside: avoid;
-          page-break-inside: avoid;
+        p {
+          overflow-wrap: anywhere;
         }
     
-        /* Layout landscape */
-        #about .grid,
-        #contact .grid {
+        /* About Me: dua kolom */
+        #about .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 8mm !important;
+          align-items: start !important;
         }
     
-        #skills .grid,
+        /* Skills: empat kartu sejajar */
+        #skills .grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+          gap: 4mm !important;
+        }
+    
+        /* Projects: dua kolom */
         #projects .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 6mm !important;
         }
     
-        /* Setiap bagian boleh mengalir ke halaman berikutnya */
+        /* Contact: sembunyikan formulir, tampilkan daftar kontak */
+        #contact .grid {
+          display: block !important;
+        }
+    
+        #contact .grid > div:last-child {
+          display: none !important;
+        }
+    
+        #contact .grid > div:first-child {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 4mm !important;
+        }
+    
+        /* Jangan paksa section pindah halaman secara berlebihan */
         #home,
         #about,
         #skills,
         #projects,
         #contact {
-          break-before: auto;
-          break-after: auto;
-          page-break-before: auto;
-          page-break-after: auto;
+          break-before: auto !important;
+          break-after: auto !important;
+          page-break-before: auto !important;
+          page-break-after: auto !important;
+          break-inside: auto !important;
+          page-break-inside: auto !important;
         }
     
-        #contact form {
-          display: none !important;
+        #projects .grid > div,
+        #skills .grid > div,
+        #contact .grid > div:first-child > a {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+    
+        /* Judul section jangan tertinggal sendirian */
+        #skills h2,
+        #projects h2,
+        #contact h2 {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+    
+        footer {
+          width: 100% !important;
+          height: auto !important;
+          min-height: 0 !important;
+          margin: 0 !important;
+          padding: 5mm 0 !important;
+          break-before: auto !important;
+          page-break-before: auto !important;
         }
     
         a {
           text-decoration: none !important;
         }
-    
-        footer {
-          padding: 5mm 0 !important;
-        }
-          
-        /* PRINT LAYOUT FIX */
-        
-        /* About Me dan Education tetap satu bagian */
-        #about {
-          break-inside: avoid !important;
-          page-break-inside: avoid !important;
-        }
-        
-        /* Technical Skills mulai di halaman baru */
-        #skills {
-          break-before: page !important;
-          page-break-before: always !important;
-          break-inside: avoid !important;
-          page-break-inside: avoid !important;
-        }
-        
-        /* Semua kartu skills tetap bersama */
-        #skills .grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          gap: 12px !important;
-        }
-        
-        /* Projects dimulai pada halaman baru */
-        #projects {
-          break-before: page !important;
-          page-break-before: always !important;
-        }
-        
-        /* Judul Projects tidak terpisah dari konten */
-        #projects > div:first-child {
-          break-after: avoid !important;
-          page-break-after: avoid !important;
-        }
-        
-        /* Hindari kartu project terpotong */
-        #projects .grid > div {
-          break-inside: avoid !important;
-          page-break-inside: avoid !important;
-        }
-        
-        /* Kurangi jarak kosong */
-        #skills,
-        #projects {
-          padding-top: 20px !important;
-          padding-bottom: 20px !important;
-        }
-        
-        /* Pertahankan warna background */
-        html,
-        body,
-        #root {
-          background: #020617 !important;
-          -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important;
-        }
-
-        /* FIX: CENTER CONTENT ON PRINT PAGES */
-        
-        @media print {
-          /* Hilangkan tinggi minimum layar */
-          .min-h-screen {
-            min-height: 0 !important;
-            height: auto !important;
-          }
-        
-          /* Jangan paksa setiap section memenuhi tinggi layar */
-          section {
-            min-height: 0 !important;
-            height: auto !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-        
-          /* Gunakan lebar konten yang konsisten */
-          #about,
-          #skills,
-          #projects,
-          #contact {
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-        
-          /* About: dua kolom tetap sejajar */
-          #about > div {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr !important;
-            align-items: start !important;
-            gap: 8mm !important;
-          }
-        
-          /* Skills: judul dan kartu berada di tengah */
-          #skills > div {
-            text-align: center !important;
-          }
-        
-          #skills .grid {
-            display: grid !important;
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-            gap: 4mm !important;
-            text-align: left !important;
-          }
-        
-          /* Projects: grid kartu terpusat */
-          #projects .grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 6mm !important;
-            align-items: start !important;
-          }
-        
-          /* Contact: hapus kolom form kosong */
-          #contact > div > .grid {
-            display: block !important;
-          }
-        
-          #contact > div > .grid > div:last-child {
-            display: none !important;
-          }
-        
-          /* Jangan membuat halaman kosong karena page break */
-          #home,
-          #about,
-          #skills,
-          #projects,
-          #contact {
-            break-before: auto !important;
-            break-after: auto !important;
-            page-break-before: auto !important;
-            page-break-after: auto !important;
-          }
-        
-          /* Footer tidak perlu memenuhi halaman */
-          footer {
-            height: auto !important;
-            min-height: 0 !important;
-            margin-top: 0 !important;
-          }
-        }
-
       }
     </style>
+
     
     <!-- React & ReactDOM via CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -305,8 +207,28 @@
         }
 
         const projectsData = [
-          {
+            {
             id: 1,
+            title: "KirimAja Logistics SLA Analysis",
+            category: "Business Intelligence",
+            tools: ["SQL", "Power BI"],
+            summary: "Analyzed logistics shipment data to evaluate SLA compliance, delivery performance, route efficiency, and operational bottlenecks.",
+            description: "This logistics analytics project uses SQL and Power BI to evaluate shipment performance against Service Level Agreements (SLAs). Through SQL-based analysis, delivery times, on-time delivery rates, route performance, hub processing times, and delay severity were examined to identify operational inefficiencies. An interactive Power BI dashboard was developed to visualize key performance indicators and highlight areas requiring operational improvement.",
+            insights: [
+                "Evaluated SLA compliance across four delivery services, identifying Sameday as the lowest-performing service with a 40% on-time delivery rate.",
+                "Analyzed route-level delivery performance and applied Pareto analysis to identify routes contributing most to shipment delays.",
+                "Identified potential operational bottlenecks by comparing hub processing times and delivery stage durations.",
+                "Built an interactive Power BI dashboard to monitor shipment volume, delivery performance, SLA compliance, and operational efficiency."
+            ],
+            notebookLink: "https://medium.com/@salsatashfiyatulqolbi/kirimaja-logistics-sla-analysis-are-we-really-delivering-late-ff8d272afbe7",
+            dashboardLink: "https://drive.google.com/drive/folders/1dUE41JFqOj2REzFoH0P_ao2Fd1C71Luk?usp=sharing",
+            gsheetLink: null,
+            githubLink: null,
+            difficulty: "Intermediate",
+            image: "https://raw.githubusercontent.com/salstq/salstq.github.io/main/public/Screenshot%202026-10-09%20184617.png"
+          },
+          {
+            id: 2,
             title: "D2C Brand Marketing Campaign Analysis",
             category: "Business Intelligence",
             tools: ["SQL", "Power BI", "GitHub"],
@@ -318,14 +240,14 @@
               "Created an interactive, real-time dashboard for cross-functional marketing teams to track daily KPIs."
             ],
             notebookLink: null,
-            dashboardLink: "https://app.powerbi.com/groups/me/reports/e3dc7fed-c05a-474c-b763-bf23f3d116b1/c4b0aeacb588bce21c54?experience=power-bi",
+            dashboardLink: "https://drive.google.com/drive/folders/1rRTmvyIYJxfNH2NdIKOfvKAmxvw34bjT?usp=sharing",
             gsheetLink: null,
             githubLink: "https://github.com/salstq/Analisis-Campaign-Marketing-D2C-Brand",
             difficulty: "Intermediate",
             image: "https://raw.githubusercontent.com/salstq/Analisis-Campaign-Marketing-D2C-Brand/main/dashboard/CampaignPerformance.png"
           },
           {
-            id: 2,
+            id: 3,
             title: "Infant Cry Classification",
             category: "Deep Learning & Classification",
             tools: ["TensorFlow", "Python", "Streamlit", "Google Colab"],
@@ -344,7 +266,7 @@
             image: "https://raw.githubusercontent.com/salstq/salstq.github.io/main/public/Screenshot%202026-06-05%20184015.png"
           },
           {
-            id: 3,
+            id: 4,
             title: "Recommendation System Products and Skincare",
             category: "Machine Learning",
             tools: ["Google Colab", "Python", "Streamlit", "Github"],
@@ -363,7 +285,7 @@
             image: "https://raw.githubusercontent.com/salstq/Recommendation-System-Products-and-Skincare-/main/Gambar/Corelation.png"
           },
           {
-            id: 4,
+            id: 5,
             title: "Bike Sharing Demand Analysis",
             category: "Data Analytics",
             tools: ["Python", "Pandas", "Matplotlib", "Seaborn"],
@@ -382,7 +304,7 @@
             image:  "https://raw.githubusercontent.com/salstq/salstq.github.io/main/public/Screenshot%202026-06-05%20184215.png"
           },
           {
-            id: 5,
+            id: 6,
             title: "Customer Response Prediction for Marketing Campaign",
             category: "Machine Learning",
             tools: ["Python", "Scikit-Learn", "Pandas", "Matplotlib"],
