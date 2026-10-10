@@ -116,18 +116,17 @@
         }
         
         #projects .grid {
-          width: 100% !important;
-          max-width: 1500px !important;
-          margin: 0 auto !important;
+          display: grid !important;
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 7mm !important;
+          width: 100% !important;
+          margin: 0 auto !important;
         }
         
         /* Hindari kartu terpotong */
         #projects .grid > div,
         #skills .grid > div {
           min-width: 0 !important;
-          margin: 0 !important;
           break-inside: avoid !important;
           page-break-inside: avoid !important;
         }
@@ -143,8 +142,7 @@
         #projects > div {
           width: 100% !important;
           max-width: 1500px !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
+          margin: 0 auto !important;
         }
 
     
