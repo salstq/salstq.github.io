@@ -7,6 +7,133 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    
+    <style>
+      /* Ukuran kertas mengikuti setting print Chrome */
+      @page {
+        size: 17in 11in;
+        margin: 0;
+      }
+    
+      @media print {
+        html,
+        body,
+        #root {
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          background: #020617 !important;
+          color: #f1f5f9 !important;
+          print-color-adjust: exact !important;
+          -webkit-print-color-adjust: exact !important;
+        }
+    
+        * {
+          box-shadow: none !important;
+          animation: none !important;
+          transition: none !important;
+        }
+    
+        /* Sembunyikan navigasi dan elemen interaktif */
+        header,
+        button,
+        input,
+        textarea,
+        form,
+        #projects > div:nth-child(2),
+        .fixed {
+          display: none !important;
+        }
+    
+        body {
+          font-size: 10pt !important;
+        }
+    
+        /* Gunakan lebar halaman Tabloid Landscape */
+        section {
+          width: 100% !important;
+          max-width: none !important;
+          box-sizing: border-box !important;
+          padding: 8mm 10mm !important;
+          margin: 0 !important;
+          overflow: visible !important;
+        }
+    
+        section > div {
+          width: 100% !important;
+          max-width: none !important;
+          box-sizing: border-box !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+    
+        h1 {
+          font-size: 28pt !important;
+        }
+    
+        h2 {
+          font-size: 20pt !important;
+        }
+    
+        h3 {
+          font-size: 13pt !important;
+        }
+    
+        p {
+          overflow-wrap: anywhere;
+        }
+    
+        img {
+          max-width: 100% !important;
+        }
+    
+        /* Hindari kartu terpotong */
+        #about a,
+        #skills .grid > div,
+        #projects .grid > div {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+    
+        /* Layout landscape */
+        #about .grid,
+        #contact .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 8mm !important;
+        }
+    
+        #skills .grid,
+        #projects .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 6mm !important;
+        }
+    
+        /* Setiap bagian boleh mengalir ke halaman berikutnya */
+        #home,
+        #about,
+        #skills,
+        #projects,
+        #contact {
+          break-before: auto;
+          break-after: auto;
+          page-break-before: auto;
+          page-break-after: auto;
+        }
+    
+        #contact form {
+          display: none !important;
+        }
+    
+        a {
+          text-decoration: none !important;
+        }
+    
+        footer {
+          padding: 5mm 0 !important;
+        }
+      }
+    </style>
     
     <!-- React & ReactDOM via CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
