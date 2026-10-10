@@ -116,27 +116,44 @@
           gap: 6mm !important;
         }
     
-        /* Contact: sembunyikan formulir, tampilkan daftar kontak */
+        /* Contact selalu mulai di halaman baru */
+        #contact {
+          break-before: page !important;
+          page-break-before: always !important;
+          break-inside: auto !important;
+          page-break-inside: auto !important;
+          padding: 8mm 10mm !important;
+        }
+        
+        #contact > div > div:first-child {
+          margin-bottom: 8mm !important;
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+        
         #contact .grid {
           display: block !important;
         }
-    
-        #contact .grid > div:last-child {
-          display: none !important;
-        }
-    
+        
         #contact .grid > div:first-child {
           display: grid !important;
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 4mm !important;
+          gap: 5mm !important;
         }
-    
-        /* Jangan paksa section pindah halaman secara berlebihan */
+        
+        #contact .grid > div:first-child > a {
+          padding: 5mm !important;
+          min-height: 18mm !important;
+        }
+        
+        #projects .grid {
+          gap: 7mm !important;
+        }
+
         #home,
         #about,
         #skills,
-        #projects,
-        #contact {
+        #projects {
           break-before: auto !important;
           break-after: auto !important;
           page-break-before: auto !important;
