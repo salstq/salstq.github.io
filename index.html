@@ -109,43 +109,45 @@
           gap: 6mm !important;
         }
         
+        
         /* PROJECTS */
         #projects {
           width: 100% !important;
+          min-height: 0 !important;
+          height: auto !important;
           box-sizing: border-box !important;
         }
         
+        #projects > div {
+          width: 100% !important;
+          max-width: 1500px !important;
+          margin: 0 auto !important;
+        }
+        
+        /* Center the project content on the printed page */
         #projects .grid {
           display: grid !important;
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 7mm !important;
           width: 100% !important;
           margin: 0 auto !important;
-          padding-top: 12mm !important;
-          padding-bottom: 12mm !important;
+          padding: 0 !important;
         }
-
-        /* Hindari kartu terpotong */
-        #projects .grid > div,
-        #skills .grid > div {
+        
+        /* Keep project cards intact */
+        #projects .grid > div {
           min-width: 0 !important;
+          margin: 0 !important;
           break-inside: avoid !important;
           page-break-inside: avoid !important;
         }
         
-        /* Judul tetap dekat dengan kartu */
-        #projects h2,
-        #skills h2 {
+        /* Keep heading close to cards */
+        #projects h2 {
           break-after: avoid !important;
           page-break-after: avoid !important;
         }
-        
-        /* Pastikan section tidak membatasi lebar konten */
-        #projects > div {
-          width: 100% !important;
-          max-width: 1500px !important;
-          margin: 0 auto !important;
-        }
+
 
     
         /* CONTACT: mulai di halaman baru */
