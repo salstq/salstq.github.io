@@ -108,22 +108,22 @@
           grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
           gap: 6mm !important;
         }
-    
+        
         /* PROJECTS */
         #projects {
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-          
-        #projects .grid {
-            width: 100% !important;
-            max-width: 1500px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 7mm !important;
-          }
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
         
+        #projects .grid {
+          width: 100% !important;
+          max-width: 1500px !important;
+          margin: 0 auto !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 7mm !important;
+        }
+        
+        /* Hindari kartu terpotong */
         #projects .grid > div,
         #skills .grid > div {
           min-width: 0 !important;
@@ -131,12 +131,22 @@
           break-inside: avoid !important;
           page-break-inside: avoid !important;
         }
-    
+        
+        /* Judul tetap dekat dengan kartu */
         #projects h2,
         #skills h2 {
           break-after: avoid !important;
           page-break-after: avoid !important;
         }
+        
+        /* Pastikan section tidak membatasi lebar konten */
+        #projects > div {
+          width: 100% !important;
+          max-width: 1500px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
     
         /* CONTACT: mulai di halaman baru */
         #contact {
