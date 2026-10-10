@@ -132,32 +132,27 @@
     
         /* CONTACT: mulai di halaman baru */
         #contact {
-          min-height: 10.8in !important;
+          display: block !important;
+          width: 100% !important;
           height: auto !important;
-          display: flex !important;
-          flex-direction: column !important;
-          justify-content: center !important;
-          align-items: center !important;
-          padding: 15mm 12mm !important;
+          min-height: 0 !important;
+          margin: 0 !important;
+          padding: 10mm 12mm !important;
           box-sizing: border-box !important;
         
           break-before: page !important;
           page-break-before: always !important;
         }
-
+          
         #contact > div {
           width: 100% !important;
           max-width: 1200px !important;
           margin: 0 auto !important;
         }
-    
-        /* Judul Contact di tengah */
+        
         #contact > div > div:first-child {
-          width: 100% !important;
           text-align: center !important;
           margin: 0 auto 8mm !important;
-          break-after: avoid !important;
-          page-break-after: avoid !important;
         }
     
         /* Sembunyikan kolom formulir kosong */
@@ -171,9 +166,6 @@
         }
     
         #contact .grid > div:first-child {
-          display: grid !important;
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 5mm !important;
           width: 100% !important;
           max-width: 1200px !important;
           margin: 0 auto !important;
@@ -194,11 +186,28 @@
           break-after: avoid !important;
           page-break-after: avoid !important;
         }
+          
+        @supports (display: flex) {
+          #contact {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+          }
+        }
     
         /* Footer mengikuti konten */
         footer {
-          margin-top: 0 !important;
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+          min-height: 0 !important;
+          margin: 0 !important;
+          padding: 5mm 12mm !important;
+        
+          break-before: avoid !important;
+          page-break-before: avoid !important;
         }
+
     
         a {
           text-decoration: none !important;
