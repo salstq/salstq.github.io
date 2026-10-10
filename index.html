@@ -8,7 +8,6 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-
     <style>
       @page {
         size: 17in 11in;
@@ -19,6 +18,7 @@
         *,
         *::before,
         *::after {
+          box-sizing: border-box !important;
           box-shadow: none !important;
           animation: none !important;
           transition: none !important;
@@ -30,6 +30,7 @@
         body,
         #root {
           width: 100% !important;
+          height: auto !important;
           margin: 0 !important;
           padding: 0 !important;
           background: #020617 !important;
@@ -50,31 +51,29 @@
           display: none !important;
         }
     
-        /* Pertahankan ukuran konten dan posisi di tengah */
+        .min-h-screen {
+          min-height: 0 !important;
+          height: auto !important;
+        }
+    
+        /* Section menggunakan lebar halaman */
         section {
           width: 100% !important;
           max-width: none !important;
-          height: auto !important;
           min-height: 0 !important;
-          box-sizing: border-box !important;
-          margin: 0 auto !important;
-          padding: 8mm 10mm !important;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 10mm 12mm !important;
           overflow: visible !important;
         }
     
         section > div {
           width: 100% !important;
-          max-width: 1400px !important;
+          max-width: 1500px !important;
           margin-left: auto !important;
           margin-right: auto !important;
           padding-left: 0 !important;
           padding-right: 0 !important;
-          box-sizing: border-box !important;
-        }
-    
-        .min-h-screen {
-          min-height: 0 !important;
-          height: auto !important;
         }
     
         h1 {
@@ -89,100 +88,106 @@
           font-size: 13pt !important;
         }
     
-        img {
-          max-width: 100% !important;
-        }
-    
         p {
           overflow-wrap: anywhere;
         }
     
-        /* About Me: dua kolom */
+        img {
+          max-width: 100% !important;
+        }
+    
+        /* ABOUT ME */
         #about .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 8mm !important;
           align-items: start !important;
+          gap: 8mm !important;
         }
     
-        /* Skills: empat kartu sejajar */
+        /* TECHNICAL SKILLS */
         #skills .grid {
           grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          gap: 4mm !important;
-        }
-    
-        /* Projects: dua kolom */
-        #projects .grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 6mm !important;
         }
     
-        /* Contact selalu mulai di halaman baru */
-        #contact {
-          break-before: page !important;
-          page-break-before: always !important;
-          break-inside: auto !important;
-          page-break-inside: auto !important;
-          padding: 8mm 10mm !important;
-        }
-        
-        #contact > div > div:first-child {
-          margin-bottom: 8mm !important;
-          break-after: avoid !important;
-          page-break-after: avoid !important;
-        }
-        
-        #contact .grid {
-          display: block !important;
-        }
-        
-        #contact .grid > div:first-child {
-          display: grid !important;
-          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 5mm !important;
-        }
-        
-        #contact .grid > div:first-child > a {
-          padding: 5mm !important;
-          min-height: 18mm !important;
-        }
-        
+        /* PROJECTS */
         #projects .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           gap: 7mm !important;
-        }
-
-        #home,
-        #about,
-        #skills,
-        #projects {
-          break-before: auto !important;
-          break-after: auto !important;
-          page-break-before: auto !important;
-          page-break-after: auto !important;
-          break-inside: auto !important;
-          page-break-inside: auto !important;
+          align-items: start !important;
         }
     
         #projects .grid > div,
-        #skills .grid > div,
-        #contact .grid > div:first-child > a {
+        #skills .grid > div {
+          min-width: 0 !important;
+          margin: 0 !important;
           break-inside: avoid !important;
           page-break-inside: avoid !important;
         }
     
-        /* Judul section jangan tertinggal sendirian */
-        #skills h2,
         #projects h2,
+        #skills h2 {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+    
+        /* CONTACT: mulai di halaman baru */
+        #contact {
+          break-before: page !important;
+          page-break-before: always !important;
+          padding: 10mm 12mm !important;
+        }
+    
+        /* Judul Contact di tengah */
+        #contact > div > div:first-child {
+          width: 100% !important;
+          text-align: center !important;
+          margin: 0 auto 8mm !important;
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+    
+        /* Sembunyikan kolom formulir kosong */
+        #contact .grid > div:last-child {
+          display: none !important;
+        }
+    
+        /* Kartu kontak dua kolom dan terpusat */
+        #contact .grid {
+          display: block !important;
+        }
+    
+        #contact .grid > div:first-child {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 5mm !important;
+          width: 100% !important;
+          max-width: 1200px !important;
+          margin: 0 auto !important;
+        }
+    
+        #contact .grid > div:first-child > a {
+          display: flex !important;
+          align-items: center !important;
+          min-width: 0 !important;
+          min-height: 20mm !important;
+          margin: 0 !important;
+          padding: 5mm !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+    
         #contact h2 {
           break-after: avoid !important;
           page-break-after: avoid !important;
         }
     
+        /* Footer mengikuti konten */
         footer {
           width: 100% !important;
           height: auto !important;
           min-height: 0 !important;
           margin: 0 !important;
-          padding: 5mm 0 !important;
+          padding: 5mm 12mm !important;
           break-before: auto !important;
           page-break-before: auto !important;
         }
@@ -193,7 +198,6 @@
       }
     </style>
 
-    
     <!-- React & ReactDOM via CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
